@@ -1,31 +1,23 @@
-def part1():
+def outcome(tmp_outcome):
+    if tmp_outcome == 88 or tmp_outcome > 90:
+        return(1)
+    elif tmp_outcome == 89:
+        return(2)
+    elif tmp_outcome == 90 or tmp_outcome < 88:
+        return(3)  
+
+def part2():
     file = open('input.txt','r')
     score = 0
     for row in file:
-        tmp_score = 0
-        tmp_outcome = 0
         op, me = row.replace("\n","").split(" ")        
         if me == "Y":
-            tmp_score += 3
-            tmp_outcome = ord(op) + 23
+            score += outcome(ord(op) + 23) + 3
         elif me == "Z":
-            tmp_score += 6
-            tmp_outcome = ord(op) + 24
-            if tmp_outcome > 90:
-                tmp_outcome = 88
+            score += outcome(ord(op) + 24) + 6
         else:
-            tmp_outcome = ord(op) + 22
-            if tmp_outcome < 88:
-                tmp_outcome = 90
-
-        if tmp_outcome == 88:
-            tmp_score += 1
-        elif tmp_outcome == 89:
-            tmp_score += 2
-        elif tmp_outcome >= 90:
-            tmp_score += 3          
-        score += tmp_score
+            score += outcome(ord(op) + 22)
 
     print(score)
 
-part1()
+part2()
