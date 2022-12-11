@@ -2,6 +2,7 @@ def part2():
     file = open('input.txt','r')
     monkey = []
     current = -1
+    modTest = 1
     for row in file:
         row = row.replace("\n","")
         if "Monkey" in row:
@@ -13,6 +14,7 @@ def part2():
             monkey[current].append(row.split("=")[1])
         elif "Test" in row:
             monkey[current].append(int(row.split(" ")[5]))
+            modTest *= int(row.split(" ")[5])
         elif "true" in row:
             monkey[current].append(int(row.split(" ")[9]))
         elif "false" in row:
@@ -24,9 +26,9 @@ def part2():
                 item[0] += 1
                 item[1][i] = eval(item[2].replace("old",str(item[1][i])))
                 if item[1][i] % item[3] == 0:
-                    monkey[item[4]][1].append(item[1][i])
+                    monkey[item[4]][1].append(item[1][i]%modTest)
                 else:
-                    monkey[item[5]][1].append(item[1][i])
+                    monkey[item[5]][1].append(item[1][i]%modTest)
             item[1] = []
     print(monkey)
     output = [0,0]
@@ -41,3 +43,4 @@ def part2():
 part2()
 
 #14398560027 low
+#14508081294
