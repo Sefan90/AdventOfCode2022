@@ -5,8 +5,6 @@ def part1():
         for i in range(len(r)):
             if r[i]+1 > size[i]:
                 size[i] = r[i]+1
-    print(file)
-    print(size)
     map3d = []
     for i in range(size[0]):
         map3d.append([])
@@ -29,7 +27,6 @@ def part1():
                         if (i+l[0]) < size[0] and (j+l[1]) < size[1] and (k+l[2]) < size[2]:
                             if map3d[i+l[0]][j+l[1]][k+l[2]] == 1:
                                 tmp_count -= 1
-                    print(tmp_count)
                     count += tmp_count
     print(count)
     
